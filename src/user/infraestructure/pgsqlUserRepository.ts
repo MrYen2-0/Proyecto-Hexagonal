@@ -38,6 +38,18 @@ export class PgsqUserRepository implements UserRepository{
         }
     }
     
+    async getUsers(): Promise<User[] | null> {
+        try{
+            const users = await UserModel.findAll();
+            if(users){
+                return users.map(user => new User(user.id, user.name, user.last_name));
+            }
+            return null;
+        }catch(error){
+            console.error("Error In Psql", error)
+            return null;
+        }
+    }
     
     
 }

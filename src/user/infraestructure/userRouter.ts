@@ -1,6 +1,6 @@
 import express from "express"
 
-import { addUserController, deleteUserController, showUserController } from "./dependencies";
+import { addUserController, deleteUserController, getUsersController, showUserController } from "./dependencies";
 
 
 
@@ -16,4 +16,8 @@ userRouter.delete(
 
 userRouter.get(
     "/mostrar", showUserController.run.bind(showUserController)
+);
+
+userRouter.get(
+    "/users", getUsersController.run.bind(getUsersController)
 );
