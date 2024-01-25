@@ -15,4 +15,29 @@ export class PgsqUserRepository implements UserRepository{
         }
     }
 
+    async deleteUser(name: string): Promise<boolean> {
+        try{
+            const deletedUser = await UserModel.destroy({where: {name}});
+            return !!deletedUser;
+        }catch(error){
+            console.error("Error In Psql", error)
+            return false;
+        }
+    }
+
+    async showUser(name: string): Promise<User | null> {
+        try{
+            const user = await UserModel.findOne({where: {name}});
+            if(user){
+                return new User(user.id, user.name, user.last_name);
+            }
+            return null;
+        }catch(error){
+            console.error("Error In Psql", error)
+            return null;
+        }
+    }
+    
+    
+    
 }
