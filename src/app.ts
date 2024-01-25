@@ -13,10 +13,8 @@ app.use('/user',userRouter);
 async function startServer() {
     try {
 
-        // Luego inicializa y conecta la base de datos
         await initializeDatabase();
         
-        // Después inicia el servidor Express
         app.listen(3000, () => {
             signale.success("Server online in port 3000");
         });
@@ -25,5 +23,4 @@ async function startServer() {
     }
 }
 
-// Inicia todo
 startServer();

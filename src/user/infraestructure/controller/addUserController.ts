@@ -6,7 +6,7 @@ export class AdduserController{
 
     async run (req: Request, res: Response){
         try{
-            let {name, last_name}= req.body; // cambia
+            let {name, last_name}= req.body;
 
             let createduser = await this.addUserUsecase.run(name, last_name);
 
